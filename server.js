@@ -1,12 +1,16 @@
-const express = require("express");
-const app = express();
+app.get("/webhook", (req, res) => {
+  const VERIFY_TOKEN = "aimbot123";
 
-const PORT = process.env.PORT || 10000;
+  const mode = req.query["hub.mode"];
+  const token = req.query["hub.verify_token"];
+  const challenge = req.query["hub.challenge"];
 
-app.get("/", (req, res) => {
-  res.send("AIM WhatsApp Bot Running 🚀");
-});
-
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server started on port ${PORT}`);
+  if (mode && token) {
+    if (mode === "subscribe" && token === VERIFY_TOKEN) {
+      console.log("Webhook verified");
+      res.status(200).send(challenge);
+    } else {
+      res.sendStatus(403);
+    }
+  }
 });
