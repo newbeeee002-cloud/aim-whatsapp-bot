@@ -35,21 +35,45 @@ app.post("/webhook", async (req, res) => {
 
       let replyText = "Hello 👋 Welcome to AIM Tours & Travels!";
 
-      if (text === "hi" || text === "hello" || text === "menu") {
+      if (
+        text === "hi" ||
+        text === "hello" ||
+        text === "hii" ||
+        text === "hy" ||
+        text === "menu"
+      ) {
         replyText =
           "Hello 👋 Welcome to AIM Tours & Travels!\n\nHow can we help you today?\n1. Flight Ticket\n2. Hotel Booking\n3. Tour Package\n4. Visa Service";
-      } else if (text === "1" || text.includes("flight")) {
+      } else if (
+        text === "1" ||
+        text.includes("flight") ||
+        text.includes("ticket") ||
+        text.includes("tkt")
+      ) {
         replyText =
           "✈️ Flight Ticket Inquiry\nPlease share:\n- From\n- To\n- Travel Date\n- Passenger Count";
-      } else if (text === "2" || text.includes("hotel")) {
+      } else if (
+        text === "2" ||
+        text.includes("hotel")
+      ) {
         replyText =
           "🏨 Hotel Booking Inquiry\nPlease share:\n- Destination\n- Check-in Date\n- Check-out Date\n- Number of Guests";
-      } else if (text === "3" || text.includes("package") || text.includes("tour")) {
+      } else if (
+        text === "3" ||
+        text.includes("package") ||
+        text.includes("tour")
+      ) {
         replyText =
           "🌍 Tour Package Inquiry\nPlease share:\n- Destination\n- Travel Dates\n- Number of Passengers\n- Budget";
-      } else if (text === "4" || text.includes("visa")) {
+      } else if (
+        text === "4" ||
+        text.includes("visa")
+      ) {
         replyText =
           "🛂 Visa Service Inquiry\nPlease share:\n- Country\n- Travel Date\n- Number of Applicants";
+      } else {
+        replyText =
+          "Hello 👋 Welcome to AIM Tours & Travels!\n\nPlease reply with:\n1. Flight Ticket\n2. Hotel Booking\n3. Tour Package\n4. Visa Service";
       }
 
       await axios.post(
